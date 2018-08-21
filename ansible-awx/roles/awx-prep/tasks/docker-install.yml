@@ -1,0 +1,24 @@
+---
+  - name: install yum utils for docker
+    yum: pkg=yum-utils update_cache=yes  state=latest
+
+  - name: install device-mapper-persistent-data
+    yum: pkg=device-mapper-persistent-data state=latest
+
+  - name: install lvm2
+    yum: pkg=lvm2 state=latest
+
+  - name: set up the stable repository
+    command: yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
+
+  - name: install the latest stable version of docker ce
+    yum: pkg=docker-ce
+ 
+  - name: Enable docker to run on boot
+    service:
+      name: docker
+      state: started
+      enabled: yes
+
+#  - name: Start docker now
+#    command: systemctl start docker 

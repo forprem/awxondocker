@@ -1,0 +1,7 @@
+---
+  - name: download CARootCA certificate from Provider
+    command: curl -x http://id:password@proxy.url.com:8080 http://crt.provider.com/CARootCA.crt -o /etc/pki/ca-trust/source/anchors/CARootCA.crt
+
+  - name: Add CACert.crt to system
+    command: update-ca-trust extract 
+ 

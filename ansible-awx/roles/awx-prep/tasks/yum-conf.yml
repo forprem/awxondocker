@@ -1,0 +1,12 @@
+# since the proxy update, the timeout is required in order to use yum 
+# but the selinux-python needs yum install
+--- 
+- name: install libselinux-python for the lineinfile module 
+  yum: 
+   name: libselinux-python
+   state: present 
+
+- name: access the yum.conf file and add in timeout  
+  lineinfile: 
+   path: /etc/yum.conf 
+   line: timeout=300

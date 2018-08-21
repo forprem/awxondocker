@@ -1,0 +1,6 @@
+---
+- hosts: awxtest2
+  serial: 1
+  sudo: yes
+  roles: 
+   - awx-prep

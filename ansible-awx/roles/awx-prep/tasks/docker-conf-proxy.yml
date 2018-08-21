@@ -1,0 +1,25 @@
+---
+
+  - name: create a new directory in systemd 
+    file:
+     path:  /etc/systemd/system/docker.service.d/
+     state: directory 
+
+  - name: create the conf file 
+    file: 
+     path: /etc/systemd/system/docker.service.d/http-proxy.conf   
+     state: touch
+
+  - name: add proxy information 
+    blockinfile: 
+     path: /etc/systemd/system/docker.service.d/http-proxy.conf
+     content: | 
+       # http-proxy.conf
+       [Service]
+       Environment="HTTP_PROXY=https://id:password@proxy.url.com:8080"
+       Environment="NO_PROXY=localhost,127.0.0.0/8"
+      
+  - name: restart docker 
+    service: 
+      name: docker
+      state: restarted    

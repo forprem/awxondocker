@@ -1,0 +1,5 @@
+---
+- hosts: awxtest2 
+  become: yes 
+  roles: 
+   - awx-install

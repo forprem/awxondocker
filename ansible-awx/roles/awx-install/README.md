@@ -1,0 +1,1 @@
+Target server should have /awx-src/installer as git clone from awx repo

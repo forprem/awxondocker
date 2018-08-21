@@ -1,0 +1,21 @@
+--- 
+
+ - name: change the postgres data dir from the docker one to its own separate lib
+   lineinfile:
+     path: ~/awx-src/installer/inventory
+     state: present
+     regexp: '^postgres_data_dir=/tmp/pgdocker'
+     line: 'postgres_data_dir=/var/lib/postgresql/data'
+
+ - name: change the host_port in the inventory from localhost to the server's IP
+   lineinfile:
+     path: ~/awx-src/installer/inventory
+     state: present
+     regexp: '^host_port'
+     line: 'host_port={{ ansible_default_ipv4.address }}:8080'
+
+ - name: make sure the docker containers are running
+   command: docker
+   register: docker_check
+#   debug: var=docker_check
+

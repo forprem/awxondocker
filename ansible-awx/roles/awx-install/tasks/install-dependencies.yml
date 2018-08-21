@@ -1,0 +1,23 @@
+#installs AWX after the prep is run
+#made specifically to pull the project from github
+##and contains the steps required to configure it
+##to get the actual UI up and running
+
+---
+  - name: install python-docker-py
+    yum: pkg=python-docker-py update_cache=yes state=latest
+
+  - name: install git
+    yum: pkg=git update_cache=yes state=latest
+
+  - name: check if the repo exists locally already
+    stat:
+      path: ~/awx-src 
+    register: git_check
+
+  - git:
+      repo: https://github.com/ansible/awx.git
+      dest: ~/awx-src
+      clone: yes
+    when: git_check.stat.exists == false
+

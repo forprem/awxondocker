@@ -1,0 +1,11 @@
+#installs AWX after the prep is run
+#made specifically to pull the project from github 
+#and contains the steps required to configure it
+#to get the actual UI up and running 
+
+---
+
+  - include: install-dependencies.yml
+  - include: configure-install.yml  
+  - include: run_awx_install_playbook.yml 
+

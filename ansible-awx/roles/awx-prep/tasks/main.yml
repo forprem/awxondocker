@@ -1,0 +1,7 @@
+---
+  - include: upsrootcacerts.yml
+  - include: yum-conf.yml
+  - include: apache-install.yml
+  - include: ansible-install.yml
+  - include: docker-install.yml
+  - include: docker-conf-proxy.yml                                             
